@@ -1,0 +1,294 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+
+    {% block banner_hero %}
+      <div class="container">
+      <div class="row">
+        <div class="col-12 text-center py-5">
+          <h1>Trưa Nay Ăn Gì !!</h1>
+        </div>
+      </div>
+    </div>
+    
+    {% endblock banner_hero %} 
+  
+
+{% block banner_slider %}
+<div class="container">
+    <div class="row pb-5">
+        <div class="col-12">
+  <div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img
+        src="{% static 'images/banner/1.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Cá diêu hồng hấp gừng hành</h5>
+        <p>Cá hấp nóng hổi, thịt cá mềm ngọt, dậy mùi thơm của hành lá, gừng, thì là. Món này cuốn bánh tráng cùng bún, rau sống chấm nước mắm chua ngọt rất ngon.</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img
+        src="{% static 'images/banner/2.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Sườn nướng ngũ vị</h5>
+        <p>Sườn đẫm nướng sốt lên màu nâu đỏ, khi ăn róc xương, thịt mềm mọng nước mà không bị khô, nổi bật mùi thơm từ các gia vị.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'images/banner/3.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Nem chim bồ câu - món ngon Bát Tràng</h5>
+        <p>Món ăn này cùng với su hào xào mực, canh măng mực làm nên mâm cỗ làng gốm Bát Tràng (Hà Nội) mà nhiều người ngợi ca ''Ăn một miếng, nhớ cả đời''.</p>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+     </div>
+    </div>
+</div>
+{% endblock banner_slider %} 
+
+
+{% block banner_slider2 %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <div id="carouselMulti" class="carousel slide" data-bs-ride="carousel">
+        
+        <div class="carousel-inner">
+
+<!-- Slide 1 -->
+<div class="carousel-item utensils active">
+  <div class="row g-3">
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_1.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Spatula</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_2.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Whisk</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_3.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Peeler</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_4.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Ladle</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_5.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Tongs</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_6.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Grater</p>
+    </div>
+
+  </div>
+</div>
+
+
+          <!-- Slide 1 -->
+<div class="carousel-item utensils active">
+  <div class="row g-3">
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_1.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Spatula</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_2.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Whisk</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_3.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Peeler</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_4.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Ladle</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_5.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Tongs</p>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <img src="{% static 'images/kitchen-utensils/img_6.png' %}" class="d-block w-100 multi-img" alt="">
+      <p class="small text-secondary utensil-name">Grater</p>
+    </div>
+
+  </div>
+</div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMulti" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselMulti" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock banner_slider2 %} 
+
+
+{% block main_content %} 
+
+<!-- ================== main-top ======================= -->
+      <!-- Courses -->
+      
+        <div class="container">
+          <!-- row top -->
+          <div class="row justify-content-center pb-5">
+            <div class="col-md-8 ">
+              <div class="text-md-center">
+                <h4 class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                  Saepe, dolorem voluptatum. Temporibus amet mollitia</h4>
+                  <p class="small text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident commodi quas adipisci quod? Similique, eligendi illum? 
+                    Eum modi rem dolorem minus nisi dolore ullam!</p>
+                       <!-- ===== -->
+              <a href="#!" class="col-md-4 btn btn-success btn-sm d-inline-flex justify-content-center align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="me-2"
+              viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(255, 255, 255)" d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z"/></svg>
+               View all courses
+               </a>
+              </div>
+            </div>
+
+          </div>
+           </div>
+
+<!-- =========================== main - product ===================================== -->
+
+
+<div class="container">
+    <div class="row">
+      {%for product in products %}
+        <!-- Product 1 -->
+        <div class="col-lg-3 product-img pb-3">
+           <img class="rounded img-fluid" src="{{ product.ImageURL }}" alt="{{ product.name }}">
+            <div class="box-element product">
+                <h6><strong>{{product.name}}</strong></h6><hr>
+                <button class="btn btn-outline-secondary add-btn">Thêm vào giỏ hàng</button>
+                <a class="btn btn-outline-success" href="#">Xem</a>
+                <h5 class="text-success"><strong>{{product.price | floatformat:0}} VND</strong></h5>
+            </div>
+        </div>
+        {% endfor %}
+       
+   
+
+            <!-- course 1 -->
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="row align-items-center">
+
+                    <!-- left block -->
+                    <div class="col-md-4">
+                      <div>
+                        <img src="{% static 'images/banner/3.jpg' %}" alt="" class="rounded img-fluid">
+                      </div>
+                    </div>
+                    <!-- right block -->
+                    <div class="col-md-8">
+                      <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h5>
+                      <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur esse aperiam iusto ut voluptatem fuga, 
+                        voluptates distinctio laboriosam error
+                      </p>
+                      <!-- Rating Price -->
+                      <div class="d-flex align-items-center">
+                        <span class="px-2 py-1 rounded-pill text-bg-warning me-2 d-inline-flex align-items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill me-2" viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                            </svg>
+                          Rating: 4.7
+                        </span>
+                        <span class="px-2 py-1 rounded-pill text-bg-success">
+                          Price: Rs,499/-
+                        </span>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </a>
+
+        
+        <div class="col-12 text-center">
+            Welcome to My Site 
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

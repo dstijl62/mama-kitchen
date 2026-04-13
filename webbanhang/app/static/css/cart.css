@@ -1,0 +1,12 @@
+.cart-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+
+/* Thu nhỏ ô số lượng */
+.quantity-input {
+  width: 60px; /* bạn có thể giảm xuống 60px nếu muốn */
+  margin: 0 auto; /* đảm bảo luôn căn giữa trong ô */
+  text-align: center;
+}

@@ -1,0 +1,136 @@
+/*  */
+
+#id_special,
+#id_is_homepage {
+  display: flex;
+}
+
+/* ============================================ */
+
+/* body {
+  height: 100%;
+} */
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px; /* tránh navbar che nội dung */
+}
+
+footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* ===================================================== */
+.navbar-brand img {
+  height: 45px; /* chỉnh theo ý bạn: 30 / 40 / 50 */
+  width: auto; /* giữ đúng tỷ lệ, không méo */
+  border-radius: 10px;
+}
+
+.features-item img {
+  width: 50px;
+  height: auto;
+}
+
+.main-header {
+  padding-top: 105px;
+}
+
+.subcribe {
+  background-image: url(./img/subscribe.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.brand-icon img {
+  width: 130px;
+}
+
+.copy-right {
+  /* background-color: #272727; */
+}
+
+.blur-filter {
+  backdrop-filter: blur(8px);
+  background-color: #cccccc0c;
+}
+
+.custom-modal {
+  max-width: 400px;
+}
+
+.nav-red {
+  background: #fff2f2 !important;
+}
+
+.footer-red {
+  background: #fff2f2 !important;
+  /* width: 100% !important; */
+  /* border: 1px solid red; */
+}
+
+/* ====================================================== */
+
+.carousel-item img {
+  height: 300px; /* chỉnh theo ý bạn: 300 / 350 / 400 */
+  object-fit: cover; /* giữ ảnh đẹp, không méo */
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+  background: rgba(253, 253, 253, 0.6); /* vàng + opacity 80% */
+  border-radius: 1px;
+  color: hsl(0, 0%, 0%) !important; /* chữ trắng */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: rgba(255, 255, 255, 0.6) !important; /* nền trắng 80% */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: brightness(0) invert(1); /* icon trắng */
+}
+
+.carousel-dark {
+  --bs-carousel-indicator-active-bg: #ffffff; /* indicator vàng */
+  --bs-carousel-caption-color: #fff; /* chữ trắng */
+  --bs-carousel-control-icon-filter: brightness(0) invert(1); /* icon trắng */
+}
+
+/* ======================================= */
+
+.product-img img {
+  height: 250px; /* chỉnh theo ý bạn: 180 / 200 / 250 */
+  width: 100%;
+  object-fit: cover; /* ảnh đẹp, không méo */
+  /* border-radius: 8px 8px 0 0;  */
+}
+
+.utensils .multi-img {
+  height: 300px;
+  width: 50%;
+  object-fit: cover;
+  object-position: center -20px;
+  padding: 30px;
+  transition: transform 0.5s ease; /* mượt */
+
+  cursor: pointer;
+}
+
+.utensils .multi-img:hover {
+  transform: scale(1.1); /* zoom 10% */
+  background-color: #6600075b;
+}
+
+.utensil-name {
+  margin-top: -120px;
+  font-weight: 500;
+  text-align: center;
+}

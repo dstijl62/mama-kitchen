@@ -1,0 +1,178 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block checkout_content %}
+
+
+
+<div class="container my-4">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'home' %}">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Thanh toán
+        </li>
+      </ol>
+    </nav>
+
+    <div class="row">
+        <!-- ================= LEFT: THÔNG TIN MUA HÀNG ================= -->
+        <div class="col-lg-8">
+            <div class="border rounded p-3 h-100">
+
+            <h4 class="fw-semibold mb-3">Thông tin mua hàng</h4>
+
+            <form>
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Nhập email">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Nhập họ tên">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Nhập số điện thoại">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Nhập địa chỉ">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Tỉnh/Thành</label>
+                        <select class="form-select">
+                            <option selected>Chọn tỉnh</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Quận/Huyện</label>
+                        <select class="form-select">
+                            <option selected>Chọn quận</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Phường/Xã</label>
+                        <select class="form-select">
+                            <option selected>Chọn phường</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="otherAddress">
+                    <label class="form-check-label" for="otherAddress">
+                        Giao hàng đến địa chỉ khác
+                    </label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Ghi chú (tùy chọn)</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+
+                <!-- ======================== Phương thức thanh toán ==================== -->
+                <h5 class="fw-semibold mt-4">Phương thức thanh toán</h5>
+
+                <div class="list-group mb-4">
+                    <label class="list-group-item">
+                        <input class="form-check-input me-2" type="radio" name="payment">
+                        ATM/Visa/Master/JCB & ZaloPay
+                    </label>
+
+                    <label class="list-group-item">
+                        <input class="form-check-input me-2" type="radio" name="payment">
+                        ATM/Visa/Master/JCB & VNPAY
+                    </label>
+
+                    <label class="list-group-item">
+                        <input class="form-check-input me-2" type="radio" name="payment">
+                        Thanh toán bằng MoMo
+                    </label>
+
+                    <label class="list-group-item">
+                        <input class="form-check-input me-2" type="radio" name="payment">
+                        Trả góp 0%
+                    </label>
+
+                    <label class="list-group-item">
+                        <input class="form-check-input me-2" type="radio" name="payment">
+                        Thanh toán khi giao hàng (COD)
+                    </label>
+
+                    <label class="list-group-item">
+                        <input class="form-check-input me-2" type="radio" name="payment">
+                        Chuyển khoản qua ngân hàng
+                    </label>
+                </div>
+
+            </form>
+            </div>
+        </div>
+
+        <!-- ================= RIGHT: ĐƠN HÀNG ================= -->
+        <div class="col-lg-4">
+
+            <div class="border rounded p-3 bg-light">
+
+                <h5 class="fw-semibold mb-3">Đơn hàng (1 sản phẩm)</h5>
+
+                <div class="cart-item d-flex mb-3">
+                    <img src="{% static 'images/products/noigang.webp' %}" 
+                         class="rounded me-3" 
+                         >
+
+                    <div>
+                        <p class="mb-1 fw-semibold">Nồi gang tròn STAUB màu xanh rêu</p>
+                        <small class="text-muted">10cm</small><br>
+                        <small class="text-success">Giảm 15% từ 4.425.000 VND</small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Tạm tính</span>
+                    <span class="fw-semibold">2.507.500 VND</span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Phí vận chuyển</span>
+                    <span>-</span>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="fw-semibold">Tổng cộng</h5>
+                    <h5 class="fw-semibold text-danger">2.507.500 VND</h5>
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Nhập mã giảm giá">
+                    <button class="btn btn-dark">Áp dụng</button>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'cart' %}" class="btn btn-outline-secondary">Quay về giỏ hàng</a>
+                    <button class="btn btn-dark">ĐẶT HÀNG</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock checkout_content %}
+
+
+
+
