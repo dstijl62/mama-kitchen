@@ -1,5 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% load humanize %}
+
 
 {% block checkout_content %}
 
@@ -123,23 +125,27 @@
 
             <div class="border rounded p-3 bg-light">
 
-                <h5 class="fw-semibold mb-3">Đơn hàng (1 sản phẩm)</h5>
-
+                <h5 class="fw-semibold mb-3">Đơn hàng ({{order.get_cart_items}} sản phẩm)</h5>
+                {% for item in items %}  
                 <div class="cart-item d-flex mb-3">
-                    <img src="{% static 'images/products/noigang.webp' %}" 
+                    <img src="{{item.product.ImageURL}}"
                          class="rounded me-3" 
                          >
 
                     <div>
-                        <p class="mb-1 fw-semibold">Nồi gang tròn STAUB màu xanh rêu</p>
-                        <small class="text-muted">10cm</small><br>
-                        <small class="text-success">Giảm 15% từ 4.425.000 VND</small>
+                        <p class="mb-1 fw-semibold">{{item.product.name}}</p>
+                        <small class="text-danger">SL: {{ item.quantity }}</small><br>
+                         <span class="text-decoration-line-through text-muted small">
+                            {{ item.original_price|floatformat:0|intcomma }} VND
+                        </span><br />
+                        <small class="text-success">{{ item.discount_price|floatformat:0|intcomma }} VND</small>
                     </div>
                 </div>
+                {% endfor %}
 
                 <div class="d-flex justify-content-between mb-3">
                     <span>Tạm tính</span>
-                    <span class="fw-semibold">2.507.500 VND</span>
+                    <span class="fw-semibold">{{ order.get_cart_total|floatformat:0|intcomma }} VND</span>
                 </div>
 
                 <div class="d-flex justify-content-between mb-3">
@@ -151,7 +157,7 @@
 
                 <div class="d-flex justify-content-between mb-3">
                     <h5 class="fw-semibold">Tổng cộng</h5>
-                    <h5 class="fw-semibold text-danger">2.507.500 VND</h5>
+                    <h5 class="fw-semibold text-danger">{{ order.get_cart_total|floatformat:0|intcomma }} VND</h5>
                 </div>
 
                 <div class="input-group mb-3">
