@@ -125,7 +125,7 @@
 
             <div class="border rounded p-3 bg-light">
 
-                <h5 class="fw-semibold mb-3">Đơn hàng ({{order.get_cart_items}} sản phẩm)</h5>
+                <h5 class="fw-semibold mb-3">Đơn hàng ({{ cartItems }} sản phẩm)</h5>
                 {% for item in items %}  
                 <div class="cart-item d-flex mb-3">
                     <img src="{{item.product.ImageURL}}"

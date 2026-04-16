@@ -33,5 +33,28 @@ const updateUserOrder = (productId, action) => {
     })
     .then((data) => {
       console.log("data:", data);
+      location.reload();
     });
 };
+
+let deleteBtns = document.getElementsByClassName("delete-item");
+
+for (let i = 0; i < deleteBtns.length; i++) {
+  deleteBtns[i].addEventListener("click", function (e) {
+    e.preventDefault();
+    let productId = this.dataset.product;
+
+    fetch("/delete_item/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+      body: JSON.stringify({ productId: productId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        location.reload(); // reload lại giỏ hàng
+      });
+  });
+}

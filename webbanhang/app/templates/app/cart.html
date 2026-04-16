@@ -10,7 +10,7 @@
       <li class="breadcrumb-item">
         <a href="{% url 'home' %}">Trang chủ</a>
       </li>
-      <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+      <li class="breadcrumb-item abc active" aria-current="page">Giỏ hàng</li>
     </ol>
   </nav>
 
@@ -43,7 +43,10 @@
                   {{item.product.name}}
                 </h6>
                 <small class="text-muted">Mô tả sản phẩm</small><br />
-                <a href="#" class="text-danger small">Xóa</a>
+                <a href="#" 
+                class="text-danger small delete-item"
+                data-product="{{ item.product.id }}"
+                >Xóa</a>
               </div>
             </div>
           </td>
@@ -57,14 +60,23 @@
           </td>
 
           <!-- Số lượng -->
-          <td class="text-center">
-            <input
-              type="number"
-              value="{{ item.quantity }}"
-              min="1"
-              class="form-control quantity-input"
-            />
-          </td>
+        <td class="text-center">
+  <div class="quantity-wrapper d-flex justify-content-center align-items-center">
+    <button class="btn btn-light btn-remove update-cart" data-product="{{ item.product.id }}" data-action="remove">−</button>
+
+    <input
+      type="number"
+      value="{{ item.quantity }}"
+      min="1"
+      class=" quantity-input text-center"
+      
+      disabled
+    />
+
+    <button class="btn btn-light btn-add update-cart" data-product="{{ item.product.id }}" data-action="add">+</button>
+  </div>
+</td>
+
 
           <!-- Thành tiền -->
           <td class="text-end text-danger fw-semibold">{{ item.total_price|floatformat:0|intcomma }} VND</td>
@@ -96,5 +108,7 @@
 
   <p class="text-muted mt-3">Không có voucher nào khả dụng.</p>
 </div>
+
+
 
 {% endblock cart_content %}

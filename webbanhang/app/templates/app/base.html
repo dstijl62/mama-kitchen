@@ -12,7 +12,7 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/home.css' %}?v=999" rel="stylesheet" />
     <link href="{% static 'css/cart.css' %}" rel="stylesheet" />
 
     {% comment %} javascript {% endcomment %}
@@ -64,6 +64,7 @@
         <a class="navbar-brand" href="{% url 'home' %}">
           <img src="{% static 'images/logo.png' %}" alt="logo tuhoc.cc" />
         </a>
+       
 
         <!--================  -->
         <button
@@ -206,12 +207,14 @@
                 <li><a class="dropdown-item" href="#">Thoát</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{% url 'cart' %}"
-                >Giỏ hàng</a
-              >
+            <li class="nav-item form-inline my-2 my-lg-0">
+              <a class="nav-link cart-wrapper" href="{% url 'cart' %}">
+          <img src="{% static 'images/cart.png' %}" alt="">
+          <span class="cart-count">{{ cartItems }}</span>
+               </a>
             </li>
           </ul>
+           
         </div>
       </div>
     </nav>
@@ -223,6 +226,9 @@
     {% block cart_content %} {% endblock cart_content %} 
     {% block checkout_content %} {% endblock checkout_content %} 
     {% block checkout2_content %} {% endblock checkout2_content %}
+    {% block register %} {% endblock register %}
+
+    
 
     <!-- ========== subcribe =========== -->
     <section class="subcribe text-bg-light py-5">

@@ -6,7 +6,19 @@
 
 /* Thu nhỏ ô số lượng */
 .quantity-input {
-  width: 60px; /* bạn có thể giảm xuống 60px nếu muốn */
+  width: 20px; /* bạn có thể giảm xuống 60px nếu muốn */
   margin: 0 auto; /* đảm bảo luôn căn giữa trong ô */
   text-align: center;
+}
+
+table.table th:nth-child(3),
+table.table td:nth-child(3) {
+  width: 80px;
+}
+
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
 }
