@@ -12,9 +12,10 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link href="{% static 'css/home.css' %}?v=999" rel="stylesheet" />
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" />
     <link href="{% static 'css/cart.css' %}" rel="stylesheet" />
     <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/search.css' %}" rel="stylesheet" />
 
     {% comment %} javascript {% endcomment %}
     <script
@@ -63,7 +64,7 @@
       <div class="container">
         <!-- ==============navbar brand -->
         <a class="navbar-brand" href="{% url 'home' %}">
-          <img src="{% static 'images/logo.png' %}" alt="logo tuhoc.cc" />
+          <img src="{% static 'images/logo.png' %}" alt="logo" />
         </a>
        
 
@@ -88,28 +89,47 @@
                 class="nav-link active"
                 aria-current="page"
                 href="{% url 'home' %}"
-                >Trang chủ</a
+                >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Giới thiệu</a>
+              <a class="nav-link" aria-current="page" href="#">About</a>
             </li>
+
+            <!-- ====================== -->
+  
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Sản phẩm
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sữa</a></li>
-                <li><a class="dropdown-item" href="#">Thịt</a></li>
-                <li><a class="dropdown-item" href="#">Rau xanh</a></li>
-                <li><a class="dropdown-item" href="#">Trái cây</a></li>
-              </ul>
-            </li>
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+    Products
+  </a>
+
+  <ul class="dropdown-menu">
+    {% for category in categories %}
+      <li class="dropdown-submenu">
+        <a class="dropdown-item {% if active_category == category.slug %}active{% endif %}"
+           href="{% url 'category' %}?category={{ category.slug }}">
+          {{ category.name }}
+        </a>
+
+        {% if category.sub_categories.all %}
+          <ul class="sub-list">
+            {% for sub in category.sub_categories.all %}
+              <li>
+                <a class="dropdown-item sub-item {% if active_category == sub.slug %}active{% endif %}"
+                   href="{% url 'category' %}?category={{ sub.slug }}">
+                  {{ sub.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</li>
+
+
+
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="./faq.html">FAQ</a>
             </li>
@@ -117,8 +137,8 @@
               <a class="nav-link" aria-current="page" href="#">Blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./contact.html"
-                >Liên hệ</a
+              <a class="nav-link" aria-current="page" href="#"
+                >Contact</a
               >
             </li>
           </ul>
@@ -171,12 +191,14 @@
           {% endif %}
 
           <!-- form search -->
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
             <input
               class="form-control form-control-sm me-0"
               type="search"
               placeholder="Search for"
               aria-label="Search"
+              name="searched"
             />
             <button class="btn btn-success btn-sm" type="submit">
               <svg
@@ -196,7 +218,7 @@
 
           
           <!-- form User -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center flex-row">
             {% if request.user.is_authenticated %}
 
             <li class="nav-item dropdown">
@@ -209,14 +231,14 @@
                 <span>Hi! {{request.user}}</span>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
-                <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                <li><a class="dropdown-item" href="#">My Orders</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               </ul>
             </li>
             {% endif %}
 
-            <li class="nav-item form-inline my-2 my-lg-0">
+            <li class="nav-item form-inline my-2 my-lg-0 ms-1">
               <a class="nav-link cart-wrapper" href="{% url 'cart' %}">
           <img src="{% static 'images/cart.png' %}" alt="">
           <span class="cart-count">{{ cartItems }}</span>
@@ -238,6 +260,7 @@
     {% block checkout2_content %} {% endblock checkout2_content %}
     {% block register %} {% endblock register %}
     {% block login %} {% endblock login %}
+    {% block search %} {% endblock search %}
 
     
 
@@ -250,7 +273,7 @@
         <!-- block 1 -->
         <div class="col-md-3">
           <div class="brand-icon mb-2">
-            <img src="./img/logo-tuhoc-dark.png" alt="" />
+            <img src="{% static 'images/logo.png' %}" alt="logo" />
           </div>
           <address class="small text-secondary">
             Jayanagar, Bangalore,<br />

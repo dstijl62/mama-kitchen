@@ -5,15 +5,74 @@ import json
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.db.models import Q
 
 
 # Create your views here.
+def category(request):
+    categories = Category.objects.filter(is_sub=False)
+    active_category = request.GET.get("category", "")
+
+    if active_category:
+        products = Product.objects.filter(
+            Q(category__slug=active_category)
+            | Q(category__sub_category__slug=active_category)
+        )
+    else:
+        products = Product.objects.filter(category__is_sub=False)
+
+    # update cartItems
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {"get_cart_total": 0, "get_cart_items": 0}
+        cartItems = order["get_cart_items"]
+
+    context = {
+        "categories": categories,
+        "products": products,
+        "active_category": active_category,
+        "cartItems": cartItems,
+    }
+    return render(request, "app/category.html", context)
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST["searched"]
+        keys = Product.objects.filter(name__contains=searched)
+    # update cartItems
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {"get_cart_total": 0, "get_cart_items": 0}
+        cartItems = order["get_cart_items"]
+
+    products = Product.objects.all()
+    context = {
+        "searched": searched,
+        "keys": keys,
+        "products": products,
+        "cartItems": cartItems,
+    }
+    return render(request, "app/search.html", context)
+
+
 def register(request):
 
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+
             Customer.objects.create(user=user, name=user.username, email=user.email)
             return redirect("login")
     else:
@@ -56,8 +115,15 @@ def home(request):
         order = {"get_cart_total": 0, "get_cart_items": 0}
         cartItems = order["get_cart_items"]
 
+    categories = Category.objects.filter(is_sub=False)
+    active_category = request.GET.get("category", "")
     products = Product.objects.all()
-    context = {"products": products, "cartItems": cartItems}
+    context = {
+        "products": products,
+        "cartItems": cartItems,
+        "categories": categories,
+        "active_category": active_category,
+    }
     return render(request, "app/home.html", context)
 
 
@@ -73,7 +139,13 @@ def cart(request):
         order = {"get_cart_total": 0, "get_cart_items": 0}
         cartItems = order["get_cart_items"]
 
-    context = {"items": items, "order": order, "cartItems": cartItems}
+    categories = Category.objects.filter(is_sub=False)
+    context = {
+        "items": items,
+        "order": order,
+        "cartItems": cartItems,
+        "categories": categories,
+    }
     return render(request, "app/cart.html", context)
 
 

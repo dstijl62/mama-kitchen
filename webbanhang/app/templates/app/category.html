@@ -1,0 +1,33 @@
+{% extends "app/base.html" %}
+{% load static %} 
+{% block search %}
+
+<section class="search-page" >
+
+  <div class="container">
+    <!-- <h5>Result search for " {{searched}} "</h5><br> -->
+    <div class="row">
+      {%for product in products %}
+        <!-- Product 1 -->
+        <div class="col-lg-3 product-img pb-3">
+          <div class="product-card">
+           <img class="rounded img-fluid product-image" src="{{ product.ImageURL }}" alt="{{ product.name }}">
+            <div class="box-element product">
+                <h6><strong>{{product.name}}</strong></h6><hr>
+                <button 
+                data-product={{product.id}}
+                data-action="add"
+                class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                <a class="btn btn-outline-success" href="#">Xem</a>
+                <h5 class="text-success"><strong>{{product.price | floatformat:0}} VND</strong></h5>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+
+
+
+</section>
+{% endblock search %}
