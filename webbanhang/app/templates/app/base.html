@@ -14,6 +14,7 @@
     />
     <link href="{% static 'css/home.css' %}?v=999" rel="stylesheet" />
     <link href="{% static 'css/cart.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
 
     {% comment %} javascript {% endcomment %}
     <script
@@ -122,12 +123,14 @@
             </li>
           </ul>
 
+          <div class="ms-auto d-flex align-items-center gap-3">
+          {% if not request.user.is_authenticated %}
           <!-- btn dùng thử a để dăng ký và đăng nhập -->
           <div class="me-1 mb-1 mb-lg-0 d-flex flex-column gap-1 flex-md-row">
-            <button
+            <a
+              href="{% url 'register' %}"
               class="btn btn-danger btn-sm d-inline-flex justify-content-center align-items-center"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+             
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -143,10 +146,10 @@
                 />
               </svg>
               Sign-up for Free
-            </button>
+            </a>
             <!-- btn login -->
             <a
-              href="#!"
+              href="{% url 'login' %}"
               class="btn btn-warning btn-sm d-inline-flex justify-content-center align-items-center"
             >
               <svg
@@ -165,6 +168,7 @@
               Login
             </a>
           </div>
+          {% endif %}
 
           <!-- form search -->
           <form class="d-flex" role="search">
@@ -190,8 +194,11 @@
             </button>
           </form>
 
+          
           <!-- form User -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if request.user.is_authenticated %}
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -199,14 +206,16 @@
                 role="button"
                 data-bs-toggle="dropdown"
               >
-                User1
+                <span>Hi! {{request.user}}</span>
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
                 <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
-                <li><a class="dropdown-item" href="#">Thoát</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               </ul>
             </li>
+            {% endif %}
+
             <li class="nav-item form-inline my-2 my-lg-0">
               <a class="nav-link cart-wrapper" href="{% url 'cart' %}">
           <img src="{% static 'images/cart.png' %}" alt="">
@@ -214,6 +223,7 @@
                </a>
             </li>
           </ul>
+          </div>
            
         </div>
       </div>
@@ -227,62 +237,11 @@
     {% block checkout_content %} {% endblock checkout_content %} 
     {% block checkout2_content %} {% endblock checkout2_content %}
     {% block register %} {% endblock register %}
+    {% block login %} {% endblock login %}
 
     
 
-    <!-- ========== subcribe =========== -->
-    <section class="subcribe text-bg-light py-5">
-      <div class="container">
-        <div class="row">
-          <!-- left block -->
-          <div class="col-md-4">
-            <div class="text-center mb-3 mb-md-0">
-              <h5 class="text-white text-md-end fs-4 fw-light">
-                Subscribe for newsletters
-              </h5>
-            </div>
-          </div>
-
-          <!-- right block -->
-          <div class="col-md-4">
-            <!-- form subcribe -->
-            <form class="d-flex" role="subcribe">
-              <div class="input-group">
-                <input
-                  class="form-control form-control-sm me-0"
-                  type="email"
-                  placeholder="your email"
-                  aria-label="Search"
-                />
-                <button
-                  class="btn btn-success btn-sm d-inline-flex align-items-center"
-                  type="submit"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="me-2 bi bi-envelope-check-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"
-                    ></path>
-                    <path
-                      d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"
-                    ></path>
-                  </svg>
-                  Subcribe
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
-
+  
   <!-- ========== main footer ==== -->
 
   <footer class="footer footer-red">

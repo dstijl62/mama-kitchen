@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 import json
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 # Create your views here.
@@ -11,7 +13,8 @@ def register(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Customer.objects.create(user=user, name=user.username, email=user.email)
             return redirect("login")
     else:
         form = CreateUserForm()
@@ -20,9 +23,26 @@ def register(request):
     return render(request, "app/register.html", context)
 
 
-def login(request):
+def loginAccount(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        else:
+            messages.info(request, "Incorrect username or password!")
+
     context = {}
     return render(request, "app/login.html", context)
+
+
+def logoutAccount(request):
+    logout(request)
+    return redirect("login")
 
 
 def home(request):
