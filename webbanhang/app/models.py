@@ -50,9 +50,18 @@ class Product(models.Model):
     price = models.FloatField()
     food = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
+    desc = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    @property
+    def original_price(self):
+        return self.price
+
+    @property
+    def discount_price(self):
+        return int(self.price * 0.9)
 
     @property
     def ImageURL(self):

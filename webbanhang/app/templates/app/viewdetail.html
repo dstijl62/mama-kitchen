@@ -1,0 +1,107 @@
+{% extends "app/base.html" %}
+{% load static %} 
+{% load humanize %}
+{% block search %}
+
+<section class="search-page" >
+
+
+<div class="container mt-5">
+  
+    <div class="row">
+      
+        <!-- Product Images -->
+        <div class="col-12 col-md-6 mb-4">
+            <img src="{{product.ImageURL}}"  alt="Product" class="img-fluid rounded mb-3 product-image-detail" id="mainImage-{{ product.id }}">
+            {% comment %} <div class="d-flex justify-content-between">
+                <img src="{% static 'images/banner/3.jpg' %}"  alt="Thumbnail 1" class="thumbnail rounded active" onclick="changeImage(event, this.src)">
+                <img src="{% static 'images/banner/3.jpg' %}"  alt="Thumbnail 2" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                <img src="{% static 'images/banner/3.jpg' %}"  alt="Thumbnail 3" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                <img src="{% static 'images/banner/3.jpg' %}"  alt="Thumbnail 4" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+            </div> {% endcomment %}
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-12 col-md-6">
+            <h2 class="mb-3">{{ product.name }}</h2>
+            
+            <div class="mb-3">
+                <span class="h4 text-success me-2">{{ product.discount_price|floatformat:0|intcomma }} VND</span>
+                <span class="text-muted"><s>{{ product.original_price|floatformat:0|intcomma }} VND</s></span>
+            </div>
+            <div class="mb-3">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+                <span class="ms-2">8.5 (120 reviews)</span>
+            </div>
+            <p class="mb-4">{{ product.desc }}</p>
+            <div class="mb-4">
+                <h5>Options:</h5>
+                <div class="btn-group" role="group" aria-label="Color selection">
+                    <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="black">Regular</label>
+                    <input type="radio" class="btn-check" name="color" id="silver" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="silver">Full Topping</label>
+                    <input type="radio" class="btn-check" name="color" id="blue" autocomplete="off">
+                    <label class="btn btn-outline-success" for="blue">Special</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="quantity" class="form-label">Quantity:</label>
+                    <!-- Số lượng -->
+    <div class="quantity-wrapper d-flex align-items-center">
+    
+    <!-- Ô số lượng bên trái -->
+    <input type="number"
+           value="{{ order_item.quantity|default:0 }}"
+           min="1"
+           class="quantity-input text-center"
+           disabled />
+
+    <!-- Cột mũi tên bên phải -->
+    <div class="arrow-buttons d-flex flex-column">
+        <button class="btn btn-light btn-up update-cart"
+                data-product="{{ product.id }}" data-action="add">
+            <i class="bi bi-chevron-up"></i>
+        </button>
+
+        <button class="btn btn-light btn-down update-cart"
+                data-product="{{ product.id }}" data-action="remove">
+            <i class="bi bi-chevron-down"></i>
+        </button>
+    </div>
+
+</div>
+
+
+            </div>
+            <button data-product="{{product.id}}"
+                data-action="add" class="btn btn-outline-success btn-lg mb-3 me-2 add-btn update-cart">
+                    <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+            <button class="btn btn-outline-secondary btn-lg mb-3">
+                    <i class="bi bi-heart"></i> Add to Wishlist
+                </button>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+
+<script>
+    function changeImage(event, src, id) {
+             document.getElementById(id).src = src;
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+</script>
+
+
+
+</section>
+{% endblock search %}

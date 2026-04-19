@@ -215,3 +215,11 @@ footer {
 .sub-item:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+.load-more-wrapper {
+  margin-bottom: 80px !important;
+}
+
+.list-group-item {
+  border: none !important;
+}

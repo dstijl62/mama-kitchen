@@ -12,10 +12,13 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <link href="{% static 'css/home.css' %}" rel="stylesheet" />
     <link href="{% static 'css/cart.css' %}" rel="stylesheet" />
     <link href="{% static 'css/register.css' %}" rel="stylesheet" />
     <link href="{% static 'css/search.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/viewdetail.css' %}" rel="stylesheet" />
 
     {% comment %} javascript {% endcomment %}
     <script
@@ -56,7 +59,9 @@
   {% comment %}
   ===============================================================================================================
   {% endcomment %}
-  <body>
+  <body> 
+    
+  
     <!-- ======================== Navbar -->
     <nav
       class="navbar navbar-expand-lg navbar-light bg-light border-bottom small fixed-top nav-red"
@@ -255,6 +260,10 @@
     {% block banner_slider %} {% endblock banner_slider %} 
     {% block banner_slider2 %} {% endblock banner_slider2 %} 
     {% block main_content %} {% endblock main_content %} 
+    {% block desserts %} {% endblock desserts %}
+    {% block favorite_dish %} {% endblock favorite_dish %}
+
+
     {% block cart_content %} {% endblock cart_content %} 
     {% block checkout_content %} {% endblock checkout_content %} 
     {% block checkout2_content %} {% endblock checkout2_content %}
@@ -430,4 +439,6 @@
   {% comment %} javascript {% endcomment %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{%static 'js/cart.js' %}"></script>
+  <script src="{%static 'js/home.js' %}"></script>
+  </body>
 </html>

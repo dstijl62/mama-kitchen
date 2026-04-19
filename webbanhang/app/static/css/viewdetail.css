@@ -1,0 +1,74 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.product-image-detail {
+  height: 450px;
+  object-fit: cover;
+}
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+}
+
+/* Khung chứa */
+.quantity-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* khoảng cách giữa input và cột mũi tên */
+}
+
+/* Ô số lượng */
+.quantity-input {
+  width: 45px;
+  height: 32px; /* tăng chiều cao */
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cột mũi tên */
+.arrow-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0px; /* giảm khoảng cách giữa mũi tên lên/xuống */
+}
+
+/* Nút mũi tên */
+.arrow-buttons .btn {
+  width: 32px;
+  height: 20px; /* tăng chiều cao nút */
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Icon mũi tên */
+.arrow-buttons i {
+  font-size: 14px;
+}

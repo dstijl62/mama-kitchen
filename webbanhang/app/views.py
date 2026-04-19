@@ -9,6 +9,39 @@ from django.db.models import Q
 
 
 # Create your views here.
+# Details
+
+
+def viewdetail(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+
+    else:
+        items = []
+        order = {"get_cart_total": 0, "get_cart_items": 0}
+        cartItems = order["get_cart_items"]
+
+    product_id = request.GET.get("id", "")
+    product = Product.objects.filter(id=product_id).first()
+    order_item = None
+    if request.user.is_authenticated and product:
+        order_item = OrderItem.objects.filter(order=order, product=product).first()
+
+    categories = Category.objects.filter(is_sub=False)
+    context = {
+        "items": items,
+        "order": order,
+        "cartItems": cartItems,
+        "categories": categories,
+        "product": product,
+        "order_item": order_item,
+    }
+    return render(request, "app/viewdetail.html", context)
+
+
 def category(request):
     categories = Category.objects.filter(is_sub=False)
     active_category = request.GET.get("category", "")
@@ -106,7 +139,8 @@ def logoutAccount(request):
 
 def home(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(user=request.user)
+
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
@@ -117,7 +151,18 @@ def home(request):
 
     categories = Category.objects.filter(is_sub=False)
     active_category = request.GET.get("category", "")
-    products = Product.objects.all()
+    products = []
+
+    for p in Product.objects.all().order_by("id"):
+        products.append(
+            {
+                "id": p.id,
+                "name": p.name,
+                "price": p.price,
+                "ImageURL": p.ImageURL,
+            }
+        )
+
     context = {
         "products": products,
         "cartItems": cartItems,
